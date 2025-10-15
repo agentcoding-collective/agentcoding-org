@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import TextSection from '../components/TextSection.astro';
+import Features from '../components/Features.astro';
 import Carousel from '../components/Carousel.astro';
 import CTA from '../components/CTA.astro';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
@@ -19,9 +19,8 @@ const t = translations.en;
     cta={t.hero.cta}
   />
   
-  <TextSection 
-    title={t.text.title}
-    content={t.text.content}
+  <Features 
+    title={t.features.title}
   />
   
   <Carousel 

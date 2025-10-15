@@ -3,18 +3,19 @@ export const translations = {
     hero: {
       title: 'Agent Coding',
       subtitle: 'Human Strategy. AI Tactics. Production Quality.',
-      cta: 'Join the Movement'
+      cta: 'Get Started'
     },
-    text: {
-      title: 'A New Paradigm',
-      content: 'Software development is at a crossroads. Vibe coding promises speed but delivers technical debt. Traditional coding offers control but sacrifices velocity. We need a third way.'
+    features: {
+      title: 'Why Agent Coding?'
     },
     carousel: {
       title: 'Core Principles',
       slides: [
-        { title: 'Developers Architect', desc: 'Your value is in design decisions, not syntax' },
-        { title: 'Autonomy with Guardrails', desc: 'Agents should be powerful but bounded' },
-        { title: 'Evidence Over Trust', desc: 'Every change must prove itself through tests' }
+        { title: 'Developers Architect', desc: 'Your value is in design decisions, not syntax. Focus on what matters.' },
+        { title: 'Autonomy with Guardrails', desc: 'Agents are powerful but operate within clear boundaries and permissions.' },
+        { title: 'Evidence Over Trust', desc: 'Every change proves itself through comprehensive tests and verification.' },
+        { title: 'Iterative Refinement', desc: 'Agents observe outcomes and self-correct based on feedback loops.' },
+        { title: 'Production Quality', desc: 'Mandatory reviews and automated gates ensure enterprise-grade results.' }
       ]
     },
     cta: {
@@ -28,18 +29,19 @@ export const translations = {
     hero: {
       title: 'Agent Coding',
       subtitle: 'Strategia Umana. Tattiche AI. Qualità Produttiva.',
-      cta: 'Unisciti al Movimento'
+      cta: 'Inizia Ora'
     },
-    text: {
-      title: 'Un Nuovo Paradigma',
-      content: 'Lo sviluppo software è a un bivio. Il vibe coding promette velocità ma genera debito tecnico. La programmazione tradizionale offre controllo ma sacrifica la velocità. Serve una terza via.'
+    features: {
+      title: 'Perché Agent Coding?'
     },
     carousel: {
       title: 'Principi Fondamentali',
       slides: [
-        { title: 'Sviluppatori Architetti', desc: 'Il tuo valore sta nelle decisioni di design, non nella sintassi' },
-        { title: 'Autonomia con Limiti', desc: 'Gli agenti devono essere potenti ma vincolati' },
-        { title: 'Evidenza Oltre Fiducia', desc: 'Ogni modifica deve dimostrarsi attraverso i test' }
+        { title: 'Sviluppatori Architetti', desc: 'Il tuo valore sta nelle decisioni di design, non nella sintassi.' },
+        { title: 'Autonomia con Limiti', desc: 'Gli agenti sono potenti ma operano entro confini e permessi chiari.' },
+        { title: 'Evidenza Oltre Fiducia', desc: 'Ogni modifica si dimostra attraverso test e verifiche complete.' },
+        { title: 'Perfezionamento Iterativo', desc: 'Gli agenti osservano i risultati e si auto-correggono.' },
+        { title: 'Qualità Produttiva', desc: 'Revisioni obbligatorie e gate automatici garantiscono risultati enterprise.' }
       ]
     },
     cta: {
