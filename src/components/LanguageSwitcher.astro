@@ -5,12 +5,28 @@ const otherLang = isItalian ? '/' : '/it/';
 const otherLangText = isItalian ? 'English' : 'Italiano';
 ---
 
-<a href={otherLang} class="language-switcher fixed top-6 right-6 z-50 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg font-semibold text-gray-900 hover:bg-white hover:scale-105 transition-all shadow-lg">
-  🌐 {otherLangText}
+<a 
+  href={otherLang} 
+  class="language-switcher fixed top-6 right-6 z-50 group"
+>
+  <div class="flex items-center gap-2 bg-white/90 backdrop-blur-md px-5 py-3 rounded-full font-semibold text-gray-900 hover:bg-white hover:shadow-xl transition-all shadow-lg border border-gray-200">
+    <span class="text-xl group-hover:scale-110 transition-transform inline-block">🌐</span>
+    <span>{otherLangText}</span>
+  </div>
 </a>
 
 <style>
   .language-switcher {
     text-decoration: none;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .language-switcher:hover {
+    transform: translateY(-2px);
+  }
+  
+  .language-switcher:active {
+    transform: translateY(0);
   }
 </style>

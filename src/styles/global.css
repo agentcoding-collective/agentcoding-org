@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
-/* Smooth scrolling foundation */
+/* Import Swiper styles */
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+/* Modern smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
@@ -8,10 +13,54 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Parallax-ready sections */
-.parallax-section {
+/* Section styling */
+section {
   position: relative;
   min-height: 100vh;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar styling for modern look */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed 0%, #2563eb 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6d28d9 0%, #1d4ed8 100%);
+}
+
+/* Remove default focus outline and add custom one */
+*:focus-visible {
+  outline: 2px solid #7c3aed;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Improve text rendering */
+p, h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
 }

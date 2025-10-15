@@ -1,73 +1,175 @@
 ---
-// Carousel accepts an array of slides to display
 interface Props {
   title: string;
-  slides: Array<{ title: string; desc: string }>;
+  slides: readonly { title: string; desc: string }[] | Array<{ title: string; desc: string }>;
 }
 
 const { title, slides } = Astro.props;
 ---
 
-<section class="parallax-section flex items-center justify-center bg-gray-100">
-  <div class="w-full max-w-6xl px-6 py-20">
-    <h2 class="text-5xl font-bold mb-12 text-center text-gray-900">{title}</h2>
+<section class="carousel-section relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-gray-100 overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute inset-0 opacity-30">
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
+    <div class="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
+  </div>
+  
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 py-20">
+    <!-- Section title -->
+    <div class="text-center mb-16 space-y-4">
+      <h2 class="text-5xl md:text-6xl font-bold text-gray-900">{title}</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full mx-auto"></div>
+    </div>
     
     <!-- Swiper carousel container -->
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        {slides.map(slide => (
-          <div class="swiper-slide">
-            <div class="bg-white p-12 rounded-2xl shadow-xl text-center">
-              <h3 class="text-3xl font-bold mb-4 text-gray-900">{slide.title}</h3>
-              <p class="text-xl text-gray-600">{slide.desc}</p>
+    <div class="swiper-container">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {slides.map((slide, index) => (
+            <div class="swiper-slide">
+              <div class="slide-card group bg-white p-8 md:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border border-gray-200 hover:border-purple-300">
+                <!-- Icon/Number badge -->
+                <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-600 text-white rounded-xl mb-6 font-bold text-lg group-hover:scale-110 transition-transform">
+                  {index + 1}
+                </div>
+                
+                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900 group-hover:text-purple-600 transition-colors">
+                  {slide.title}
+                </h3>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                  {slide.desc}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        
+        <!-- Navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-pagination mt-8"></div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Swiper styles scoped to this component */
+  .swiper-container {
+    width: 100%;
+    position: relative;
+  }
+  
   .swiper {
     width: 100%;
-    padding-bottom: 50px;
+    padding: 20px 0 80px 0;
   }
   
   .swiper-slide {
     height: auto;
+    display: flex;
+  }
+  
+  .slide-card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Custom navigation buttons */
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #7c3aed;
+    background: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background: #7c3aed;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  /* Custom pagination */
+  :global(.swiper-pagination-bullet) {
+    width: 12px;
+    height: 12px;
+    background: #9333ea;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+  }
+  
+  :global(.swiper-pagination-bullet-active) {
+    opacity: 1;
+    width: 32px;
+    border-radius: 6px;
   }
 </style>
 
 <script>
+  // Import Swiper with modules - this runs client-side
   import Swiper from 'swiper';
-  import { Pagination, Autoplay } from 'swiper/modules';
-  import 'swiper/css';
-  import 'swiper/css/pagination';
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
   
-  // Initialize Swiper with autoplay and pagination
-  new Swiper('.swiper', {
-    modules: [Pagination, Autoplay],
-    slidesPerView: 1,
-    spaceBetween: 30,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    },
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    breakpoints: {
-      // Responsive: show more slides on larger screens
-      768: {
-        slidesPerView: 2
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Swiper with enhanced configuration
+    new Swiper('.swiper', {
+      modules: [Navigation, Pagination, Autoplay],
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
-      1024: {
-        slidesPerView: 3
-      }
-    }
+      
+      // Pagination dots
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      
+      // Autoplay configuration
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      
+      // Responsive breakpoints
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+      },
+      
+      // Smooth transitions
+      speed: 800,
+      effect: 'slide',
+    });
   });
 </script>
