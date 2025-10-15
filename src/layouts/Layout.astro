@@ -17,54 +17,9 @@ const { title, lang } = Astro.props;
       content="Agent Coding - Human Strategy. AI Tactics. Production Quality."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Preload critical fonts if needed -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <title>{title}</title>
   </head>
   <body>
     <slot />
-
-    <!-- Initialize Lenis smooth scroll globally -->
-    <script>
-      import Lenis from 'lenis';
-
-      // Create smooth scroll instance with optimized settings
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-        infinite: false,
-      });
-
-      // Sync Lenis with requestAnimationFrame
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      // Handle anchor link clicks for smooth scrolling
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener('click', (e: Event) => {
-          e.preventDefault();
-          const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
-          if (targetId && targetId !== '#') {
-            const target = document.querySelector(targetId);
-            if (target) {
-              lenis.scrollTo(target as HTMLElement, {
-                offset: 0,
-                duration: 1.5,
-              });
-            }
-          }
-        });
-      });
-    </script>
   </body>
 </html>

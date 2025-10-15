@@ -8,95 +8,85 @@ interface Props {
 const { title, subtitle, cta } = Astro.props;
 ---
 
-<section class="relative bg-white py-20 md:py-32">
-  <div class="container mx-auto px-4 md:px-6 max-w-7xl">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <!-- Left: Text Content -->
-      <div class="space-y-6">
-        <div
-          class="inline-block px-4 py-2 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium"
+<section
+  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 to-white"
+>
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-20 left-10 w-64 h-64 bg-indigo-500 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="hero-content relative z-10 max-w-6xl mx-auto px-6 py-20 text-center">
+    <div
+      class="inline-block px-4 py-1.5 mb-6 text-sm font-medium text-indigo-700 bg-indigo-50 rounded-full"
+    >
+      New Development Paradigm
+    </div>
+
+    <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+      {title}
+    </h1>
+
+    <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto font-light">
+      {subtitle}
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a
+        href="#get-started"
+        class="group flex items-center gap-2 px-8 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all text-sm"
+      >
+        {cta}
+        <svg
+          class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          New Approach to Development
-        </div>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
+          ></path>
+        </svg>
+      </a>
+      <a
+        href="#features"
+        class="px-8 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-all text-sm"
+      >
+        Learn More
+      </a>
+    </div>
 
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-          {title}
-        </h1>
-
-        <p class="text-xl text-gray-600 leading-relaxed">
-          {subtitle}
-        </p>
-
-        <div class="flex flex-wrap gap-4 pt-4">
-          <a
-            href="#get-started"
-            class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
-          >
-            {cta}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
-              ></path>
-            </svg>
-          </a>
-
-          <a
-            href="#learn-more"
-            class="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg font-medium hover:border-gray-400 hover:bg-gray-50 transition-colors"
-          >
-            Learn More
-          </a>
-        </div>
-
-        <!-- Stats -->
-        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200">
-          <div>
-            <div class="text-2xl font-bold text-gray-900">5+</div>
-            <div class="text-sm text-gray-600">Autonomy Levels</div>
-          </div>
-          <div>
-            <div class="text-2xl font-bold text-gray-900">100%</div>
-            <div class="text-sm text-gray-600">Open Source</div>
-          </div>
-          <div>
-            <div class="text-2xl font-bold text-gray-900">1k+</div>
-            <div class="text-sm text-gray-600">Developers</div>
-          </div>
-        </div>
+    <div class="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-gray-200 max-w-2xl mx-auto">
+      <div>
+        <div class="text-3xl font-bold text-gray-900">5+</div>
+        <div class="text-sm text-gray-600 mt-1">Autonomy Levels</div>
       </div>
-
-      <!-- Right: Visual -->
-      <div class="relative">
-        <div
-          class="aspect-square rounded-2xl bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 p-8 shadow-xl"
-        >
-          <div
-            class="w-full h-full rounded-xl bg-white/50 backdrop-blur-sm border border-white/60 flex items-center justify-center"
-          >
-            <svg
-              class="w-32 h-32 text-indigo-600 opacity-20"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Floating elements -->
-        <div
-          class="absolute -top-4 -right-4 w-24 h-24 bg-indigo-500 rounded-2xl shadow-lg opacity-10"
-        >
-        </div>
-        <div
-          class="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-500 rounded-full shadow-lg opacity-10"
-        >
-        </div>
+      <div>
+        <div class="text-3xl font-bold text-gray-900">100%</div>
+        <div class="text-sm text-gray-600 mt-1">Open Source</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-gray-900">1k+</div>
+        <div class="text-sm text-gray-600 mt-1">Developers</div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const hero = document.querySelector('.hero-content');
+        if (hero) {
+          const scrolled = window.pageYOffset;
+          const rate = scrolled * 0.3;
+          (hero as HTMLElement).style.transform = `translateY(${rate}px)`;
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+</script>

@@ -7,122 +7,107 @@ interface Props {
 const { title, slides } = Astro.props;
 ---
 
-<section class="py-20 md:py-32 bg-white">
-  <div class="container mx-auto px-4 md:px-6 max-w-7xl">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-        {title}
-      </h2>
-      <p class="text-lg text-gray-600">Core principles that guide the Agent Coding methodology</p>
+<section class="py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">{title}</h2>
+      <p class="text-lg text-gray-600">Guiding values of the Agent Coding methodology</p>
     </div>
 
-    <div class="swiper-container">
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          {
-            slides.map((slide, index) => (
-              <div class="swiper-slide">
-                <div class="bg-gray-50 rounded-xl p-8 h-full border border-gray-200 hover:border-indigo-300 hover:shadow-lg transition-all">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-lg">
-                      {index + 1}
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900">{slide.title}</h3>
-                  </div>
-                  <p class="text-gray-600 leading-relaxed">{slide.desc}</p>
+    <div class="carousel-container">
+      <div
+        class="bg-gray-50 rounded-2xl p-12 min-h-[280px] flex flex-col justify-center carousel-content"
+      >
+        {
+          slides.map((slide, index) => (
+            <div
+              class="carousel-slide"
+              data-index={index}
+              style={index === 0 ? 'display: flex;' : 'display: none;'}
+            >
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-sm">
+                  {index + 1}
                 </div>
+                <h3 class="text-2xl font-bold text-gray-900">{slide.title}</h3>
               </div>
-            ))
-          }
-        </div>
+              <p class="text-lg text-gray-600 leading-relaxed">{slide.desc}</p>
+            </div>
+          ))
+        }
+      </div>
 
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination mt-8"></div>
+      <div class="flex justify-center gap-2 mt-8 carousel-dots">
+        {
+          slides.map((_, index) => (
+            <button
+              class={`carousel-dot h-2 rounded-full transition-all ${index === 0 ? 'w-8 bg-indigo-600' : 'w-2 bg-gray-300 hover:bg-gray-400'}`}
+              data-index={index}
+            />
+          ))
+        }
       </div>
     </div>
   </div>
 </section>
 
-<style>
-  .swiper-container {
-    width: 100%;
-    position: relative;
-  }
-
-  .swiper {
-    width: 100%;
-    padding: 20px 0 60px 0;
-  }
-
-  .swiper-slide {
-    height: auto;
-  }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    color: #4f46e5;
-    background: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .swiper-button-prev:after,
-  .swiper-button-next:after {
-    font-size: 16px;
-  }
-
-  :global(.swiper-pagination-bullet) {
-    width: 8px;
-    height: 8px;
-    background: #4f46e5;
-    opacity: 0.3;
-  }
-
-  :global(.swiper-pagination-bullet-active) {
-    opacity: 1;
-    width: 24px;
-    border-radius: 4px;
-  }
-</style>
-
 <script>
-  import Swiper from 'swiper';
-  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+  let currentSlide = 0;
+  let autoplayInterval: number;
+
+  function showSlide(index: number) {
+    const slides = document.querySelectorAll('.carousel-slide') as NodeListOf<HTMLElement>;
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    slides.forEach((slide) => {
+      slide.style.display = 'none';
+    });
+
+    dots.forEach((dot) => {
+      dot.classList.remove('w-8', 'bg-indigo-600');
+      dot.classList.add('w-2', 'bg-gray-300');
+    });
+
+    if (slides[index]) {
+      slides[index].style.display = 'flex';
+      slides[index].style.flexDirection = 'column';
+    }
+
+    if (dots[index]) {
+      dots[index].classList.remove('w-2', 'bg-gray-300');
+      dots[index].classList.add('w-8', 'bg-indigo-600');
+    }
+
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function startAutoplay() {
+    autoplayInterval = window.setInterval(nextSlide, 5000);
+  }
+
+  function stopAutoplay() {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+    }
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
-    new Swiper('.swiper', {
-      modules: [Navigation, Pagination, Autoplay],
-      slidesPerView: 1,
-      spaceBetween: 24,
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 1,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 24,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 24,
-        },
-      },
+    const dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        const index = parseInt((e.target as HTMLElement).dataset.index || '0');
+        showSlide(index);
+        stopAutoplay();
+        startAutoplay();
+      });
     });
+
+    startAutoplay();
   });
 </script>
