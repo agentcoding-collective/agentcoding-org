@@ -7,27 +7,30 @@ interface Props {
 const { title, lang } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Agent Coding - Human Strategy. AI Tactics. Production Quality." />
+    <meta
+      name="description"
+      content="Agent Coding - Human Strategy. AI Tactics. Production Quality."
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
     <!-- Preload critical fonts if needed -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <title>{title}</title>
   </head>
   <body>
     <slot />
-    
+
     <!-- Initialize Lenis smooth scroll globally -->
     <script>
       import Lenis from 'lenis';
-      
+
       // Create smooth scroll instance with optimized settings
       const lenis = new Lenis({
         duration: 1.2,
@@ -45,9 +48,9 @@ const { title, lang } = Astro.props;
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
-      
+
       // Handle anchor link clicks for smooth scrolling
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', (e: Event) => {
           e.preventDefault();
           const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute('href');

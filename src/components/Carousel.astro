@@ -13,33 +13,29 @@ const { title, slides } = Astro.props;
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
         {title}
       </h2>
-      <p class="text-lg text-gray-600">
-        Core principles that guide the Agent Coding methodology
-      </p>
+      <p class="text-lg text-gray-600">Core principles that guide the Agent Coding methodology</p>
     </div>
-    
+
     <div class="swiper-container">
       <div class="swiper">
         <div class="swiper-wrapper">
-          {slides.map((slide, index) => (
-            <div class="swiper-slide">
-              <div class="bg-gray-50 rounded-xl p-8 h-full border border-gray-200 hover:border-indigo-300 hover:shadow-lg transition-all">
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-lg">
-                    {index + 1}
+          {
+            slides.map((slide, index) => (
+              <div class="swiper-slide">
+                <div class="bg-gray-50 rounded-xl p-8 h-full border border-gray-200 hover:border-indigo-300 hover:shadow-lg transition-all">
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-lg">
+                      {index + 1}
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900">{slide.title}</h3>
                   </div>
-                  <h3 class="text-xl font-semibold text-gray-900">
-                    {slide.title}
-                  </h3>
+                  <p class="text-gray-600 leading-relaxed">{slide.desc}</p>
                 </div>
-                <p class="text-gray-600 leading-relaxed">
-                  {slide.desc}
-                </p>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
-        
+
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-pagination mt-8"></div>
@@ -53,16 +49,16 @@ const { title, slides } = Astro.props;
     width: 100%;
     position: relative;
   }
-  
+
   .swiper {
     width: 100%;
     padding: 20px 0 60px 0;
   }
-  
+
   .swiper-slide {
     height: auto;
   }
-  
+
   .swiper-button-prev,
   .swiper-button-next {
     color: #4f46e5;
@@ -72,19 +68,19 @@ const { title, slides } = Astro.props;
     border-radius: 50%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-  
+
   .swiper-button-prev:after,
   .swiper-button-next:after {
     font-size: 16px;
   }
-  
+
   :global(.swiper-pagination-bullet) {
     width: 8px;
     height: 8px;
     background: #4f46e5;
     opacity: 0.3;
   }
-  
+
   :global(.swiper-pagination-bullet-active) {
     opacity: 1;
     width: 24px;
@@ -95,7 +91,7 @@ const { title, slides } = Astro.props;
 <script>
   import Swiper from 'swiper';
   import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-  
+
   document.addEventListener('DOMContentLoaded', () => {
     new Swiper('.swiper', {
       modules: [Navigation, Pagination, Autoplay],

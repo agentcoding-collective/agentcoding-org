@@ -43,6 +43,7 @@ The following have been implemented via repository files:
 - ✅ **Require conversation resolution before merging**
 
 - ✅ **Require signed commits** (optional but recommended)
+
   ```bash
   # To enable signed commits locally:
   git config commit.gpgsign true
@@ -70,22 +71,27 @@ The following have been implemented via repository files:
 **Navigate to**: Settings → Code security and analysis
 
 #### Dependency graph
+
 - ✅ Enable (should be on by default for public repos)
 
 #### Dependabot alerts
+
 - ✅ Enable
 - Automatically notifies of vulnerable dependencies
 
 #### Dependabot security updates
+
 - ✅ Enable
 - Automatically creates PRs to update vulnerable dependencies
 
 #### Code scanning
+
 - ✅ Enable CodeQL analysis
 - Should detect your `.github/workflows/codeql.yml` file
 - If not detected, click "Set up" → "Set up this workflow"
 
 #### Secret scanning
+
 - ✅ Enable
 - Automatically detects committed secrets
 - ✅ Enable push protection (prevents pushing secrets)
@@ -110,7 +116,7 @@ The following have been implemented via repository files:
 
 ```yaml
 ✅ Allow squash merging (recommended)
-  - Default to pull request title for squash commits
+- Default to pull request title for squash commits
 ❌ Allow merge commits
 ❌ Allow rebase merging
 ✅ Always suggest updating pull request branches
@@ -170,6 +176,7 @@ OR
 **Add repository secrets**:
 
 Example for Cloudflare Pages deployment:
+
 ```yaml
 CLOUDFLARE_API_TOKEN=your_token_here
 CLOUDFLARE_ACCOUNT_ID=your_account_id_here
@@ -186,6 +193,7 @@ CLOUDFLARE_ACCOUNT_ID=your_account_id_here
 This is a newer alternative/addition to branch protection rules with more granular control.
 
 **Consider enabling**:
+
 - Require status checks for all branches (not just main)
 - Restrict file path changes (e.g., protect `.github/` folder)
 - Metadata restrictions
@@ -197,6 +205,7 @@ This is a newer alternative/addition to branch protection rules with more granul
 **Navigate to**: Settings → Code review assignment
 
 If you add team members later:
+
 - ✅ Enable auto assignment
 - ✅ Choose round robin or load balance
 - Set minimum number of reviewers
@@ -246,16 +255,19 @@ gh api repos/agentcoding-collective/agentcoding-org/automated-security-fixes -X 
 ### Regular Tasks
 
 **Weekly**:
+
 - Review Dependabot PRs and merge security updates
 - Check security audit workflow results
 - Review any CodeQL alerts
 
 **Monthly**:
+
 - Audit repository access and collaborators
 - Review open issues and PRs
 - Update dependencies proactively
 
 **Quarterly**:
+
 - Review and update security policies
 - Assess if new security features are available
 - Update documentation

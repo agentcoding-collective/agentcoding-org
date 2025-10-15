@@ -194,11 +194,11 @@ Translations are in `src/i18n/translations.ts`:
 ```typescript
 export const translations = {
   en: {
-    hero: { title: "English Title" }
+    hero: { title: 'English Title' },
   },
   it: {
-    hero: { title: "Titolo Italiano" }
-  }
+    hero: { title: 'Titolo Italiano' },
+  },
 };
 ```
 
