@@ -1,0 +1,10 @@
+# CODEOWNERS - Defines who owns and must approve changes to specific files
+# Learn more: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owner - all files require approval from the repository owner
+* @alessandroraffa
+
+# Specific file ownership examples (uncomment and customize as needed):
+# /src/i18n/ @alessandroraffa @translation-team
+# /docs/ @alessandroraffa @documentation-team
+# /.github/ @alessandroraffa

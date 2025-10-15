@@ -320,6 +320,18 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
+.env.*.local
+
+# secrets and sensitive files
+secrets/
+*.key
+*.pem
+*.cert
+*.p12
+*.pfx
+.npmrc
+.yarnrc
 
 # macOS-specific files
 .DS_Store
