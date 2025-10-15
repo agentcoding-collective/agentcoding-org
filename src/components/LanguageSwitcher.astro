@@ -1,0 +1,16 @@
+---
+const currentPath = Astro.url.pathname;
+const isItalian = currentPath.startsWith('/it');
+const otherLang = isItalian ? '/' : '/it/';
+const otherLangText = isItalian ? 'English' : 'Italiano';
+---
+
+<a href={otherLang} class="language-switcher fixed top-6 right-6 z-50 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg font-semibold text-gray-900 hover:bg-white hover:scale-105 transition-all shadow-lg">
+  🌐 {otherLangText}
+</a>
+
+<style>
+  .language-switcher {
+    text-decoration: none;
+  }
+</style>

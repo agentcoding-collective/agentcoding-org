@@ -1,0 +1,73 @@
+---
+// Carousel accepts an array of slides to display
+interface Props {
+  title: string;
+  slides: Array<{ title: string; desc: string }>;
+}
+
+const { title, slides } = Astro.props;
+---
+
+<section class="parallax-section flex items-center justify-center bg-gray-100">
+  <div class="w-full max-w-6xl px-6 py-20">
+    <h2 class="text-5xl font-bold mb-12 text-center text-gray-900">{title}</h2>
+    
+    <!-- Swiper carousel container -->
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {slides.map(slide => (
+          <div class="swiper-slide">
+            <div class="bg-white p-12 rounded-2xl shadow-xl text-center">
+              <h3 class="text-3xl font-bold mb-4 text-gray-900">{slide.title}</h3>
+              <p class="text-xl text-gray-600">{slide.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="swiper-pagination mt-8"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Swiper styles scoped to this component */
+  .swiper {
+    width: 100%;
+    padding-bottom: 50px;
+  }
+  
+  .swiper-slide {
+    height: auto;
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination, Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+  
+  // Initialize Swiper with autoplay and pagination
+  new Swiper('.swiper', {
+    modules: [Pagination, Autoplay],
+    slidesPerView: 1,
+    spaceBetween: 30,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    breakpoints: {
+      // Responsive: show more slides on larger screens
+      768: {
+        slidesPerView: 2
+      },
+      1024: {
+        slidesPerView: 3
+      }
+    }
+  });
+</script>

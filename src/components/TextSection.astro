@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  content: string;
+}
+
+const { title, content } = Astro.props;
+---
+
+<section class="parallax-section flex items-center justify-center bg-white">
+  <div class="max-w-4xl px-6 py-20">
+    <!-- Slower parallax speed creates depth effect -->
+    <div data-scroll data-scroll-speed="1">
+      <h2 class="text-5xl font-bold mb-8 text-gray-900">{title}</h2>
+      <p class="text-xl text-gray-700 leading-relaxed">{content}</p>
+    </div>
+  </div>
+</section>

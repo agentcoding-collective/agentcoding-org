@@ -1,0 +1,43 @@
+---
+// Props interface defines what data this layout accepts
+interface Props {
+  title: string;
+  lang: 'en' | 'it';
+}
+
+const { title, lang } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.17/dist/lenis.css">
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    
+    <!-- Initialize Lenis smooth scroll globally -->
+    <script>
+      import Lenis from 'lenis';
+      
+      // Create smooth scroll instance with custom settings
+      const lenis = new Lenis({
+        duration: 1.2,  // Scroll animation duration
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing
+        orientation: 'vertical',
+        smoothWheel: true
+      });
+
+      // Animation frame loop to update scroll
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    </script>
+  </body>
+</html>

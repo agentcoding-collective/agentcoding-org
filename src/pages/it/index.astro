@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import TextSection from '../../components/TextSection.astro';
+import Carousel from '../../components/Carousel.astro';
+import CTA from '../../components/CTA.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import { translations } from '../../i18n/translations';
+
+const t = translations.it;
+---
+
+<Layout title="Agent Coding - Strategia Umana. Tattiche AI." lang="it">
+  <LanguageSwitcher />
+  
+  <Hero 
+    title={t.hero.title}
+    subtitle={t.hero.subtitle}
+    cta={t.hero.cta}
+  />
+  
+  <TextSection 
+    title={t.text.title}
+    content={t.text.content}
+  />
+  
+  <Carousel 
+    title={t.carousel.title}
+    slides={t.carousel.slides}
+  />
+  
+  <CTA 
+    title={t.cta.title}
+    discord={t.cta.discord}
+    github={t.cta.github}
+    twitter={t.cta.twitter}
+  />
+</Layout>

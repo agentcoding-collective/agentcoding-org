@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Smooth scrolling foundation */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Parallax-ready sections */
+.parallax-section {
+  position: relative;
+  min-height: 100vh;
+}
